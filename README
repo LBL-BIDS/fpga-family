@@ -1,0 +1,21 @@
+The intent of this directory is to hold wrappers for the device-dependent
+features of specific FPGA.  Known features that should land here:
+ - DDR output cells
+ - DDR input cells
+ - JTAG access
+ - High speed serial (MGT, GTP, ...)
+ - Clock handling?
+
+This is almost the same idea as the resources held in peripheral_drivers,
+but:
+ - There's (almost) no code here, just a shim to the device-specific
+    hard-core instantiation
+ - This group gets to be sorted by fpga family, since you would never
+    mix-and-match, one synthesis has to target a specific chip within
+    a family.
+ - It is considered difficult and/or useless to simulate and test the
+    code, since it by itself does almost nothing.
+
+Assuming we have consistent interfaces across families, an application
+  that uses that interface can be easily switched to a board with a
+  different chip family.
